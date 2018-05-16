@@ -8,6 +8,10 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "diff-dom": "^2.4.0",
+    "jsdom": "^11.10.0",
+    "lodash": "^4.17.10",
+    "marked": "^0.3.19",
     "vue": "^2.5.16"
   },
   "devDependencies": {
