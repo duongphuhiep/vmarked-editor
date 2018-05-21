@@ -1,6 +1,10 @@
 <template>
   <div>
-    <textarea class="half" v-model="md"></textarea>
+    <div class="half">
+      <MdEditor class='editor' v-model="md">
+        <slot></slot>
+      </MdEditor>
+    </div>
 		<div class="half preview" v-html="highlightedHtml" ref="preview"></div>
   </div>
 </template>
@@ -10,6 +14,7 @@ import marked from "marked";
 import _ from "lodash";
 import diffDOM from "diff-dom";
 import { JSDOM } from "jsdom";
+import MdEditor from "./MdEditor.vue";
 
 export default {
   name: "VMarkedEditor",
@@ -21,17 +26,14 @@ export default {
       highlightedHtml: ""
     };
   },
-  props: {
-    content: String
-  },
-  mounted() {
-    this.md = this.content;
-  },
+  components: { MdEditor },
   methods: {
     render: _.debounce(function() {
       this.oldHtml = this.html;
-      this.html = marked(this.md, { headerIds: false });
-      this.highlightedHtml = highlightDiff(this.oldHtml, this.html);
+      if (this.md) {
+        this.html = marked(this.md, { headerIds: false });
+        this.highlightedHtml = highlightDiff(this.oldHtml, this.html);
+      }
     }, 300),
     updateScroll: _.debounce(function() {
       let p = this.$refs.preview;
@@ -79,7 +81,7 @@ function highlightDiff(html1, html2) {
 * {
   box-sizing: border-box;
 }
-textarea {
+.editor {
   width: 100%;
   height: 100%;
   resize: vertical;
