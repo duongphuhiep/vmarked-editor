@@ -1,7 +1,7 @@
 <template>
   <div id="app">
 
-    <VMarkedEditor class='ed' v-model="c2" @change="edChanged">
+    <VMarkedEditor class='ed' v-model="c2">
 # Title 1
 
 Lorem ipsum *dolor* sit amet **consectetur adipisicing elit**. Quibusdam `nulla`, tenetur maxime aliquid quas expedita distinctio sunt fugit quam enim, ducimus voluptatem voluptas quos libero nobis eos asperiores maiores laboriosam.
@@ -27,13 +27,11 @@ $output = "\n\nFactorial " . $num . " = " . nfact($num) . "\n\n";
 echo $output;
 ```
   </VMarkedEditor>
-    <!--VMarkedEditor class='ed' :content="c" /-->
   </div>
 </template>
 
 <script>
 import VMarkedEditor from "./components/VMarkedEditor.vue";
-//import MdEditor from "./components/MdEditor.vue";
 
 export default {
   name: "app",
@@ -45,12 +43,6 @@ export default {
   },
   components: {
     VMarkedEditor
-    //MdEditor
-  },
-  methods: {
-    edChanged() {
-      //console.log(this.c);
-    }
   }
 };
 </script>
